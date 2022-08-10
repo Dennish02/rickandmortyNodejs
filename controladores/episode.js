@@ -1,8 +1,29 @@
 import axios from 'axios';
 
+let resultado2 = []
+let variable = []
+const axiosData = async (url) => {
+
+    try {
+        let { data } = await axios.get(url);
+        return (data)
+
+        // console.log(resultado2);
+    } catch (error) {
+        return error;
+    }
+}
+async function getAllData(urls) {
+
+    return await urls.map(e => (Promise.all(e.map(u => (axiosData(u))))))
+
+    //   await Promise.all(variable).then(elem=>{
+    //     return (elem);
+    //    });
+
+}
+
 const obtenerEpisodes = async (req, res) => {
-
-
 
     let url = [];
     let resultado = [{
@@ -19,6 +40,9 @@ const obtenerEpisodes = async (req, res) => {
     let result = []
     let i = 0;
     let capitulos = []
+
+    let consulta = []
+    let consultas = []
     try {
 
         let episode = await axios.get('https://rickandmortyapi.com/api/episode')
@@ -36,13 +60,12 @@ const obtenerEpisodes = async (req, res) => {
         }
 
 
-        await Promise.all(url.map(f => (axios.get(f))))
-            .then(valores => {
-                datitos.push(valores)
-            })
-            .catch((error) => {
-                console.log('error url' + error.message);
-            })
+        Promise.all(url.map(async f => {
+            await axios.get(f)
+                .then(resposnse => {
+                    datitos.push(resposnse)
+                })
+        }))
 
 
         datitos.forEach(r => {
@@ -58,41 +81,64 @@ const obtenerEpisodes = async (req, res) => {
             })
         })
 
+        console.time()
 
-        while (i < capitulos.length) {
-            await Promise.all(capitulos[i].characters.map(async r => (await axios.get(r))))
-                .then(values => {
-                    resultEpi.push(values)
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            i++;
-        }
+        consulta = capitulos.map(el => (
+            el.characters.map(f => (f))))
 
-        resultEpi.forEach(datos => (
-            location.push(datos.map(r => (r.data.location.name)))
+       consulta.map(async e => await Promise.all(e.map(u => (axiosData(u)))
+        ).then(valores => 
+             (consultas.push(valores))
         ))
+        console.log(consultas);
+        res.json(consultas);
+        // let resultado = await Promise.all(consulta)
 
-        location.forEach(data => {
-            result.push(data.filter((item, index) => {
-                return data.indexOf(item) === index;
-            }))
-        }
-        )
 
-        result.forEach(loca => {
-            capitulos.forEach(o => {
-                delete o.characters
-                o['location'] = loca
-            })
-        })
+        //  let resultado3 = await Promise.all(resultado2.map(el=>(el)))
+        //  console.log(resultado); 
+        // for (let capitulo of capitulos) {
 
-        resultado.forEach(datos => {
-            datos.results = capitulos
-        })
+        //     resultEpi.push(await Promise.all(capitulo.characters.map(enlaces => (
+        //         axiosData(enlaces)
+        //     ))))
 
-        res.json(resultado)
+        //     //  await  Promise.all(capitulo.characters.map(async r => {
+        //     //        await axios.get(r)
+        //     //                 .then(resultado=>{
+        //     //                     resultEpi.push(resultado)
+        //     //                 })
+        //     //     }))
+        // }
+        // res.send(resultEpi);
+
+
+        console.timeEnd()
+        // location.push(resultEpi.map(r => (
+        //     probar.push((r.data.location.name))
+        // )))
+
+        // // // console.log(location);
+        // res.send(location)  
+        // location.forEach(data => {
+        //     result.push(data.filter((item, index) => {
+        //         return data.indexOf(item) === index;
+        //     }))
+        // }
+        // )
+
+        // result.forEach(loca => {
+        //     capitulos.forEach(o => {
+        //         delete o.characters
+        //         o['location'] = loca
+        //     })
+        // })
+
+        // resultado.forEach(datos => {
+        //     datos.results = capitulos
+        // })
+
+        // res.json(resultado)
     } catch (error) {
         console.log(error.message);
     }
