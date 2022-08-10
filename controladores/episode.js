@@ -49,8 +49,7 @@ const obtenerEpisodes = async (req, res) => {
         episode.data.results.forEach(u => (
             capitulos.push({
                 name: u.name,
-                episode: u.episode,
-                characters: u.characters
+                
             })
         ))
 
