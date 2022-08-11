@@ -19,67 +19,58 @@ npm run dev
 yarn dev
 ```
 
-Usar Postman para hacer el llamado a las rutas o en el navegar:
+Usar Postman para hacer el llamado a las rutas o en el navegador:
 
-1. Para ver los caracteres:
+1. Para ver los resultados:
 ```
-localhost:3001/charcounter
-```
-Al hacer esta peticion vas a obtener una respuesta como esta:
-```
-{
-    "exercise_name": "Char counter",
-    "time": "2.7s to 3.7s",
-    "in_time": true,
-    "results": [
-        {
-            "char": "l",
-            "count": 63,
-            "resource": "location"
-        },
-        {
-            "char": "e",
-            "count": 39,
-            "resource": "episode"
-        },
-        {
-            "char": "c",
-            "count": 387,
-            "resource": "character"
-        }
-    ]
-}
-```
-
-2. Para ver los episodios con los nombres de los lugares
-```
-localhost:3001/episode
+localhost:3001/getdata
 ```
 Al hacer esta peticion vas a obtener una respuesta como esta:
 ```
 [
     {
+        "exercise_name": "Char counter",
+        "time": "2.7s to 3.7s",
+        "in_time": true,
+        "results": [
+            {
+                "char": "l",
+                "count": 63,
+                "resource": "location"
+            },
+            {
+                "char": "e",
+                "count": 39,
+                "resource": "episode"
+            },
+            {
+                "char": "c",
+                "count": 387,
+                "resource": "character"
+            }
+        ]
+    },
+    {
         "exercise_name": "Episode locations",
-        "time": "10s",
-        "in_time": false,
+        "time": "3s",
+        "in_time": true,
         "results": [
             {
                 "name": "Pilot",
                 "episode": "S01E01",
-                "location": [
+                "locations": [
                     "Citadel of Ricks",
-                    "Earth (Replacement Dimension)",
-                    "Planet Squanch",
-                    "Rick and Two Crows Planet",
-                    "Rick's Memories",
-                    "unknown",
+                    "Bepis 9",
                     "Earth (C-137)",
-                    "Earth (Unknown dimension)"
+                    "unknown",
+                    "Interdimensional Customs",
+                    "Earth (Replacement Dimension)",
+                    "Worldender's lair"
                 ]
-            }, ....more
+            },...more data
             ]
-     }
+    }
 ]
-    
+  
 ```
-
+El tiempo de respuesta depende de la velocidad de internet, en priomedio ```3s```
