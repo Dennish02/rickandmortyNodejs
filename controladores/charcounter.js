@@ -16,7 +16,7 @@ const obtenerCaracteres = async (req, res)=>{
              vecesLetraC
           ]
       }
-      res.json(resultado)
+     return resultado
     
       } catch (error) {
         console.log(error.message);

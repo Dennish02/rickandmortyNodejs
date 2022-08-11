@@ -1,17 +1,12 @@
 import express  from "express";
-import charRoute from "./routes/charRoute.js";
-import episodeRoutes from './routes/episodeRoutes.js'
-
+import getCharactersEpisodes from './routes/getCharactersEpisodes.js'
 
 const app = express();
 app.use(express.json());
 
 
 //rutas
-
-app.use("/charcounter", charRoute);
-app.use("/episode", episodeRoutes);
-
+app.use("/getdata", getCharactersEpisodes);
 
 //puerto
 const PORT = 3001;
