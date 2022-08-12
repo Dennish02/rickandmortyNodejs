@@ -1,7 +1,7 @@
 import { obtenerCaracteres } from "./charcounter.js";
 import { getAllEpisodes } from "./getEpisodes.js";
 
-async function getAllData(req, res) {
+async function getAllData(res) {
 
     try {
        let respuesta =  await  Promise.all([obtenerCaracteres(), getAllEpisodes() ])

@@ -30,7 +30,7 @@ Al hacer esta peticion vas a obtener una respuesta como esta:
 [
     {
         "exercise_name": "Char counter",
-        "time": "2.7s to 3.7s",
+        "time": "1.5s to 2s",
         "in_time": true,
         "results": [
             {
@@ -74,3 +74,17 @@ Al hacer esta peticion vas a obtener una respuesta como esta:
   
 ```
 El tiempo de respuesta depende de la velocidad de internet, en priomedio ```3s```
+
+#
+El Código está organizado en carpetas, tenemos el archivo ```ìndex.js``` en la raiz del proyecto, que se encarga de recibir la petición y la conexion con el puerto,
+esta petición va hacia la carpeta ```routes``` donde está el archivo ```getCharactersEpisodes.js```, éste recibe la ruta y llama a la función ```getAllData``` ubicada en la carpeta ```controladores```, éste archivo tiene una función que realiza un ```Promise.all``` a las dos funciones que se encargan de pedir los datos:
+    <ol>
+        <li>```obtenerCaracteres: ``` 
+                Esta funcion se encuentra dentro del archivo ```charcounter``` y se encarga de realizar un ```Promise.all``` a los 3 endpoints de char counter, y esta función ```llamado``` recibe por parámeto la url principal, la url de las paginas, el tipo de character y la letra.
+                    Con estos datos realiza la petición y cuenta la cantidad e veces que aparece la letra en ese endpoint. 
+                La funcion ```endPoint``` recibe dos parámetros, uno es la pagina a la que se quiere navegar, y la otra es el a que parte, ejemplo si queres ir a ```episodes``` o a ```characters```, etc. Todos los endpoints estan en la carpeta ```utils```
+        </li>
+        <li>```getAllEpisodes: ```
+                Esta funciion se encuentra dentro de la carpeta ```controladores``` en el archivo ```getEpisodes.js```, la misma realiza el llamado al endpint principal y a partir de ahi recorre las paginas de la api, almacenando en cada recorridos los datos que se solicitan para mandar la respueta en formato Json. 
+        </li>
+    </ol>

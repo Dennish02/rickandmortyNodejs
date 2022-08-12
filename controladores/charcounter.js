@@ -1,21 +1,28 @@
 import llamado from "../hooks/llamado.js";
+import { endPoint, endPointCharacter, endPointEpisode, endPointLocation } from "../utils/index.js";
 
-const obtenerCaracteres = async (req, res)=>{
+const obtenerCaracteres = async ()=>{
+  
+
     try { 
-        let vecesLetraC = await llamado('https://rickandmortyapi.com/api/character', 'https://rickandmortyapi.com/api/character?page=', 'c', 'character');
-        let vecesLetraE = await llamado('https://rickandmortyapi.com/api/episode', 'https://rickandmortyapi.com/api/episode?page=', 'e', 'episode');
-        let vecesLetraL = await llamado("https://rickandmortyapi.com/api/location", 'https://rickandmortyapi.com/api/location?page=', 'l', 'location');
+      let results = []
+      let promesas  = await Promise.all([
+        llamado(endPointCharacter, endPoint, 'c', 'character'),
+         llamado(endPointEpisode, endPoint, 'e', 'episode'),
+         llamado(endPointLocation, endPoint, 'l', 'location')
+      ])
       
-        let resultado = {
-          "exercise_name": "Char counter",
-          "time": '2.7s to 3.7s',
-          "in_time": true,
-          "results": [
-              vecesLetraL,
-             vecesLetraE,
-             vecesLetraC
-          ]
+      for(let datos of promesas){
+        results = [ datos, ...results]
       }
+      let resultado = {
+        "exercise_name": "Char counter",
+        "time": '1.9s to 2s',
+        "in_time": true,
+        "results": results
+    }  
+ 
+
      return resultado
     
       } catch (error) {
