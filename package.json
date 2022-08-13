@@ -4,9 +4,14 @@
   "description": "Rick and Morty",
   "type": "module",
   "main": "index.js",
+  "jest": {
+    "verbose": true
+  },
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --silent",
+    "test:watch": "npm run test --watch"
   },
   "keywords": [
     "Node"
@@ -15,10 +20,15 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
+    "babel-jest": "^28.1.3",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "cross-env": "^7.0.3",
+    "express": "^4.18.1",
+    "jest": "^28.1.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "@babel/preset-env": "^7.18.10",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.4"
   }
 }

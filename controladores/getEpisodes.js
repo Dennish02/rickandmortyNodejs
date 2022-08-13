@@ -2,7 +2,7 @@ import axios from 'axios';
 import { endPoint } from '../utils/index.js';
 
 
-const getAllEpisodes = async () => {
+export default  async function getAllEpisodes() {
       //defino a las variables necesarias
       let arregloResultados = [];
       let apiUrl = endPoint(1, 'episode');
@@ -73,4 +73,3 @@ const getAllEpisodes = async () => {
         return (error.message)
     }
 }
-export { getAllEpisodes }

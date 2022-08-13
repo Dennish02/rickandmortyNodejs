@@ -1,7 +1,10 @@
 import llamado from "../hooks/llamado.js";
 import { endPoint, endPointCharacter, endPointEpisode, endPointLocation } from "../utils/index.js";
 
-const obtenerCaracteres = async ()=>{
+
+
+
+export default async function obtenerCaracteres(){
   
 
     try { 
@@ -28,8 +31,4 @@ const obtenerCaracteres = async ()=>{
       } catch (error) {
         console.log(error.message);
       }
-}
-
-export {
-    obtenerCaracteres
 }

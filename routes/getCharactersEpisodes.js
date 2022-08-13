@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllData } from "../controladores/getAllData.js";
+import  getAllData  from "../controladores/getAllData.js";
 
 
 
