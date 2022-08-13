@@ -1,7 +1,7 @@
 ## Rick and Morty API
 
-Este es un Back-End hecho en Node.js.
-
+Este es un Back-End hecho en Node.js y Express.js.
+<img src='img/rym.png'>
 ## Getting Started
 
 Primero, instalar el package.json:
@@ -88,3 +88,9 @@ esta petición va hacia la carpeta ```routes``` donde está el archivo ```getCha
                 Esta funciion se encuentra dentro de la carpeta ```controladores``` en el archivo ```getEpisodes.js```, la misma realiza el llamado al endpint principal y a partir de ahi recorre las paginas de la api, almacenando en cada recorridos los datos que se solicitan para mandar la respueta en formato Json. 
         </li>
     </ol>
+
+
+<h2>Tests</h2>
+<p>Para correr los test pone en consola ```npm run test``` y vas a obtener un resultado similar a este</p>
+
+<img src='img/test.png'>
