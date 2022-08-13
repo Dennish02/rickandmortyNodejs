@@ -1,7 +1,7 @@
 import  obtenerCaracteres  from "./charcounter.js";
 import  getAllEpisodes  from "./getEpisodes.js";
 
-export default async function getAllData(res) {
+export default async function getAllData(req, res) {
 
     try {
        let respuesta =  await  Promise.all([obtenerCaracteres(), getAllEpisodes() ])

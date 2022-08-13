@@ -1,4 +1,5 @@
 const supertest = require('supertest')
+
 import {app, server} from '../index.js'
 
 const api = supertest(app)
@@ -6,12 +7,16 @@ const api = supertest(app)
  
 
 describe(' ----------- Probar las dos peticiones ----------', function (){
-    test('comprobar el tiempo de respuesta', async ()=>{
+    test('Comprobar que se resuelva:', async ()=>{
     await  api
-        .get('getdata')
+        .get('/getdata')
         .expect(200)
-        .expect('Content-Type', /aplication\/json/)
     })
+    test('Comprobar que venngan los dos datos:', async ()=>{
+       const response = await  api.get('/getdata')         
+       expect(response.body[0].exercise_name).toBe("Char counter")
+       expect(response.body[1].exercise_name).toBe("Episode locations")    
+        })
 })
 afterAll(()=>{
     server.close()

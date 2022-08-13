@@ -1,4 +1,4 @@
-const express = require('express');
+import  express  from 'express';
 import getCharactersEpisodes from './routes/getCharactersEpisodes.js'
 
 const app = express();
