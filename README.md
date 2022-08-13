@@ -93,4 +93,4 @@ esta petición va hacia la carpeta ```routes``` donde está el archivo ```getCha
 <h2>Tests</h2>
 <p>Para correr los test pone en consola ```npm run test``` y vas a obtener un resultado similar a este</p>
 
-<img src='https://drive.google.com/file/d/1rKUogBRLf2YN8aNOmg2GWTFah2CHaCV-/preview" width="640" height="480" >
+<img src="https://drive.google.com/file/d/1rKUogBRLf2YN8aNOmg2GWTFah2CHaCV-/preview" width="640" height="480" >
